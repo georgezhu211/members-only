@@ -22,6 +22,10 @@ const verify = async (username, password, done) => {
 
 function configurePassport(passport) {
   passport.use(new LocalStrategy(verify));
+
+  passport.serializeUser((user, done) => {
+    done(null, user.id);
+  });
 }
 
 module.exports = configurePassport;
