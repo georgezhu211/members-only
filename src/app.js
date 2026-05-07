@@ -4,6 +4,8 @@ const configurePassport = require("./config/passport");
 const passport = require("passport");
 const session = require("express-session");
 const path = require("node:path");
+const Store = require("connect-pg-simple")(session);
+const db = require("./config/db");
 
 const authRoutes = require("./features/auth/routes");
 
@@ -20,6 +22,9 @@ app.use(express.urlencoded({ extended: false }));
 // Session
 app.use(
   session({
+    store: new Store({
+      pool: db,
+    }),
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
