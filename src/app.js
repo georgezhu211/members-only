@@ -8,6 +8,7 @@ const Store = require("connect-pg-simple")(session);
 const db = require("./config/db");
 
 const authRoutes = require("./features/auth/routes");
+const messageRoutes = require("./features/messages/routes");
 
 const app = express();
 
@@ -40,6 +41,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/auth", authRoutes);
+app.use("/messages", messageRoutes);
 
 // Global error handler
 app.use((err, req, res, next) => {
