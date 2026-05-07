@@ -1,12 +1,11 @@
 const db = require("../config/db");
 const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcryptjs");
+const userRepository = require("../features/users/repository");
 
 const verify = async (username, password, done) => {
   try {
-    const {
-      rows: [user],
-    } = await db.query("SELECT * FROM users WHERE username = $1", [username]);
+    const user = await userRepository.findByUsername(username);
 
     if (!user) {
       return done(null, false, { message: "Incorrect username" });
