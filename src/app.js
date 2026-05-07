@@ -41,4 +41,10 @@ app.get("/", (req, res) => {
 
 app.use("/auth", authRoutes);
 
+// Global error handler
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(err.statusCode || 500).send(err.message);
+});
+
 app.listen(3000);
