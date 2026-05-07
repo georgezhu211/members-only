@@ -1,3 +1,4 @@
+const { validationResult, matchedData } = require("express-validator");
 const authService = require("./service");
 
 exports.getSignup = (req, res) => {
@@ -5,7 +6,16 @@ exports.getSignup = (req, res) => {
 };
 
 exports.postSignup = async (req, res) => {
-  const user = await authService.createUser(req.body);
+  const result = validationResult(req);
+
+  if (!result.isEmpty()) {
+    return res.status(400).render("auth/signup", {
+      errors: result.array(),
+    });
+  }
+
+  const data = matchedData(req);
+  const user = await authService.createUser(data);
 
   res.status(201).json({
     message: "User created",
