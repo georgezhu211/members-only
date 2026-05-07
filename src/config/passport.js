@@ -12,7 +12,7 @@ const verify = async (username, password, done) => {
       return done(null, false, { message: "Incorrect username" });
     }
 
-    const match = await bcrypt.compare(password, user.password);
+    const match = await bcrypt.compare(password, user.password_hash);
 
     if (!match) {
       return done(null, false, { message: "Incorrect password" });
