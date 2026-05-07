@@ -1,5 +1,10 @@
 const messageRepository = require("./repository");
 
+exports.index = async (req, res) => {
+  const messages = await messageRepository.findAll();
+  res.render("messages/index", { messages });
+};
+
 exports.new = async (req, res) => {
   res.render("messages/new");
 };
