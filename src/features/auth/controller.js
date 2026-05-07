@@ -16,3 +16,12 @@ exports.postSignup = async (req, res) => {
 exports.getLogin = (req, res) => {
   res.render("auth/login");
 };
+
+exports.getLogout = (req, res, next) => {
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/");
+  });
+};

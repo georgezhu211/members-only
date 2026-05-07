@@ -1,2 +1,7 @@
 <a href="/auth/signup">sign up</a>
 <a href="/auth/login">log in</a>
+
+<% if (locals.user) {%>
+<h1>WELCOME BACK <%= user.username %></h1>
+<a href="/auth/logout">LOG OUT</a>
+<%}%>

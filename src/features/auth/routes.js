@@ -18,4 +18,6 @@ router.post(
   })
 );
 
+router.get("/logout", controller.getLogout);
+
 module.exports = router;
