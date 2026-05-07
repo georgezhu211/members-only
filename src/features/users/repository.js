@@ -1,9 +1,9 @@
 const db = require("../../config/db");
 
-exports.create = async ({ username, password }) => {
+exports.create = async ({ username, hashedPassword }) => {
   const { rows } = await db.query(
     "INSERT INTO users (username, password) VALUES ($1, $2) RETURNING *",
-    [username, password]
+    [username, hashedPassword]
   );
 
   return rows[0];
