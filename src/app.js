@@ -31,7 +31,7 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-  })
+  }),
 );
 app.use(passport.session());
 configurePassport(passport);
@@ -50,7 +50,8 @@ app.use("/users", userRoutes);
 // Global error handler
 app.use((err, req, res, next) => {
   console.error(err);
-  res.status(err.statusCode || 500).send(err.message);
+  const message = err.statusCode ? err.message : "Internal server error";
+  res.status(err.statusCode || 500).send(message);
 });
 
 app.listen(3000);
