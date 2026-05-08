@@ -1,5 +1,6 @@
 const messageRepository = require("./repository");
 const NotFoundError = require("../../errors/NotFoundError");
+const ForbiddenError = require("../../errors/ForbiddenError");
 
 exports.index = async (req, res) => {
   const messages = await messageRepository.findByUserId(req.user.id);
@@ -17,31 +18,19 @@ exports.create = async (req, res) => {
 };
 
 exports.show = async (req, res) => {
-  const message = await messageRepository.findById(req.params.id);
-
-  if (!message) {
-    throw new NotFoundError("Message not found");
-  }
+  const message = await getAuthorizedMessage(req.params.id, req.user.id);
 
   res.render("messages/show", { message });
 };
 
 exports.edit = async (req, res) => {
-  const message = await messageRepository.findById(req.params.id);
-
-  if (!message) {
-    throw new NotFoundError("Message not found");
-  }
+  const message = await getAuthorizedMessage(req.params.id, req.user.id);
 
   res.render("messages/edit", { message });
 };
 
 exports.update = async (req, res) => {
-  const message = await messageRepository.findById(req.params.id);
-
-  if (!message) {
-    throw new NotFoundError("Message not found");
-  }
+  await getAuthorizedMessage(req.params.id, req.user.id);
 
   const { title, content } = req.body;
   await messageRepository.update(req.params.id, { title, content });
@@ -49,12 +38,18 @@ exports.update = async (req, res) => {
 };
 
 exports.delete = async (req, res) => {
-  const message = await messageRepository.findById(req.params.id);
+  await getAuthorizedMessage(req.params.id, req.user.id);
+
+  await messageRepository.delete(req.params.id);
+  res.redirect("/messages");
+};
+
+async function getAuthorizedMessage(messageId, userId) {
+  const message = await messageRepository.findById(messageId);
 
   if (!message) {
     throw new NotFoundError("Message not found");
   }
 
-  await messageRepository.delete(req.params.id);
-  res.redirect("/messages");
-};
+  return message;
+}
