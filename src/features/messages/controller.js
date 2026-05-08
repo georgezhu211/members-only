@@ -25,3 +25,13 @@ exports.show = async (req, res) => {
 
   res.render("messages/show", { message });
 };
+
+exports.edit = async (req, res) => {
+  const message = await messageRepository.findById(req.params.id);
+
+  if (!message) {
+    throw new NotFoundError("Message not found");
+  }
+
+  res.render("messages/edit", { message });
+};
