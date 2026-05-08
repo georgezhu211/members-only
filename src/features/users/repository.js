@@ -22,3 +22,7 @@ exports.findById = async (id) => {
 
   return rows[0];
 };
+
+exports.joinTheClub = async (userId) => {
+  await db.query("UPDATE users SET is_member = TRUE WHERE id = $1", [userId]);
+};

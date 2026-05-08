@@ -6,3 +6,11 @@
 <p><strong>Last Name:</strong> <%= user.last_name %></p>
 <p><strong>Member:</strong> <%= user.is_member ? 'Yes' : 'No' %></p>
 <p><strong>Created At:</strong> <%= user.created_at.toLocaleString() %></p>
+
+<% if (!locals.user.is_member) {%>
+<form action="/users/me/membership" method="POST">
+  <label for="secretPasscode">Secret Passcode</label>
+  <input id="secretPasscode" name="secretPasscode" type="text" />
+  <button type="submit">Join the club</button>
+</form>
+<% } %> <%- include("../partials/errors.ejs") %>
