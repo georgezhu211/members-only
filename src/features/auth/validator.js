@@ -1,4 +1,5 @@
 const { body } = require("express-validator");
+const userRepository = require("../users/repository");
 
 const validator = [
   body("firstName")
@@ -23,7 +24,13 @@ const validator = [
     .isLength({ min: 4, max: 15 })
     .withMessage("Username must be between 4 and 15 characters")
     .matches(/^[a-zA-Z0-9_]+$/)
-    .withMessage("Username can contain only letters, numbers, and underscores"),
+    .withMessage("Username can contain only letters, numbers, and underscores")
+    .custom(async (value) => {
+      const user = await userRepository.findByUsername(value);
+      if (user) {
+        throw new Error("Username already in use");
+      }
+    }),
   body("password")
     .trim()
     .isLength({ min: 6 })
