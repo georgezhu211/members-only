@@ -51,5 +51,9 @@ async function getAuthorizedMessage(messageId, userId) {
     throw new NotFoundError("Message not found");
   }
 
+  if (message.user_id !== userId) {
+    throw new ForbiddenError("Access denied");
+  }
+
   return message;
 }
