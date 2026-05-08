@@ -1,0 +1,18 @@
+<nav style="display: flex; justify-content: space-between">
+  <div>
+    <a href="/">Home</a>
+    <% if (locals.user) {%>
+    <a href="/messages">Messages</a>
+    <a href="/users/me">Profile</a>
+    <% } %>
+  </div>
+
+  <div>
+    <% if (locals.user) {%>
+    <a href="/auth/logout">Log out</a>
+    <% } else { %>
+    <a href="/auth/signup">Sign up</a>
+    <a href="/auth/login">Log in</a>
+    <% } %>
+  </div>
+</nav>

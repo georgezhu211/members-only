@@ -35,6 +35,11 @@ app.use(
 app.use(passport.session());
 configurePassport(passport);
 
+app.use((req, res, next) => {
+  res.locals.user = req.user || null;
+  next();
+});
+
 // Routes
 app.get("/", (req, res) => {
   const user = req.user;
