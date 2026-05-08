@@ -2,7 +2,7 @@ const messageRepository = require("./repository");
 const NotFoundError = require("../../errors/NotFoundError");
 
 exports.index = async (req, res) => {
-  const messages = await messageRepository.findAll();
+  const messages = await messageRepository.findByUserId(req.user.id);
   res.render("messages/index", { messages });
 };
 

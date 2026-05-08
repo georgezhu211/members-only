@@ -13,6 +13,14 @@ exports.findById = async (id) => {
   return rows[0];
 };
 
+exports.findByUserId = async (userId) => {
+  const { rows } = await db.query(
+    "SELECT * FROM messages WHERE user_id = $1 ORDER BY id ASC",
+    [userId]
+  );
+  return rows;
+};
+
 exports.create = async ({ userId, title, content }) => {
   await db.query(
     "INSERT INTO messages (user_id, title, content) VALUES ($1, $2, $3)",
