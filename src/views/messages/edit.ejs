@@ -1,5 +1,5 @@
 <h1>Edit Message</h1>
-
+<%- include("../partials/errors.ejs") %>
 <form action="/messages/<%= message.id %>/update" method="POST">
   <div>
     <label for="title"><strong>Title:</strong></label>

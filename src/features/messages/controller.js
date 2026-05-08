@@ -1,6 +1,7 @@
 const messageRepository = require("./repository");
 const NotFoundError = require("../../errors/NotFoundError");
 const ForbiddenError = require("../../errors/ForbiddenError");
+const { validationResult, matchedData } = require("express-validator");
 
 exports.index = async (req, res) => {
   const messages = await messageRepository.findByUserId(req.user.id);
@@ -12,7 +13,15 @@ exports.new = async (req, res) => {
 };
 
 exports.create = async (req, res) => {
-  const { title, content } = req.body;
+  const result = validationResult(req);
+
+  if (!result.isEmpty()) {
+    return res.status(400).render("messages/new", {
+      errors: result.array(),
+    });
+  }
+
+  const { title, content } = matchedData(req);
   await messageRepository.create({ userId: req.user.id, title, content });
   res.redirect("/messages");
 };
@@ -32,7 +41,15 @@ exports.edit = async (req, res) => {
 exports.update = async (req, res) => {
   await getAuthorizedMessage(req.params.id, req.user.id);
 
-  const { title, content } = req.body;
+  const result = validationResult(req);
+
+  if (!result.isEmpty()) {
+    return res.status(400).render("messages/new", {
+      errors: result.array(),
+    });
+  }
+
+  const { title, content } = matchedData(req);
   await messageRepository.update(req.params.id, { title, content });
   res.redirect("/messages");
 };
