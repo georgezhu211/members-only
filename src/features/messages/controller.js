@@ -27,19 +27,22 @@ exports.create = async (req, res) => {
 };
 
 exports.show = async (req, res) => {
-  const message = await getAuthorizedMessage(req.params.id, req.user.id);
+  const message = await getMessageOrThrow(req.params.id);
+  assertCanModifyMessage(req.user, message);
 
   res.render("messages/show", { message });
 };
 
 exports.edit = async (req, res) => {
-  const message = await getAuthorizedMessage(req.params.id, req.user.id);
+  const message = await getMessageOrThrow(req.params.id);
+  assertCanModifyMessage(req.user, message);
 
   res.render("messages/edit", { message });
 };
 
 exports.update = async (req, res) => {
-  await getAuthorizedMessage(req.params.id, req.user.id);
+  const message = await getMessageOrThrow(req.params.id);
+  assertCanModifyMessage(req.user, message);
 
   const result = validationResult(req);
 
@@ -55,22 +58,20 @@ exports.update = async (req, res) => {
 };
 
 exports.delete = async (req, res) => {
-  await getAuthorizedMessage(req.params.id, req.user.id);
+  const message = await getMessageOrThrow(req.params.id);
+  assertCanModifyMessage(req.user, message);
 
   await messageRepository.delete(req.params.id);
   res.redirect("/messages");
 };
 
-async function getAuthorizedMessage(messageId, userId) {
-  const message = await messageRepository.findById(messageId);
-
-  if (!message) {
-    throw new NotFoundError("Message not found");
-  }
-
-  if (message.user_id !== userId) {
-    throw new ForbiddenError("Access denied");
-  }
-
+async function getMessageOrThrow(id) {
+  const message = await messageRepository.findById(id);
+  if (!message) throw new NotFoundError("Message not found");
   return message;
+}
+
+function assertCanModifyMessage(user, message) {
+  if (user.is_admin) return;
+  if (message.user_id !== user.id) throw new ForbiddenError();
 }
