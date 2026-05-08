@@ -1,1 +1,14 @@
-<p>home page</p>
+<h1>Messages</h1>
+<% for (const message of messages) { %>
+<hr />
+<div>
+  <h3><%= message.title %></h3>
+  <p><%= message.content %></p>
+  <% if (locals.user) {%>
+  <p>
+    by <%= message.username %>
+    <small><%= message.created_at.toLocaleString() %></small>
+  </p>
+  <% } %>
+</div>
+<% } %>

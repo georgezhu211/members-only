@@ -7,6 +7,7 @@ const path = require("node:path");
 const Store = require("connect-pg-simple")(session);
 const db = require("./config/db");
 
+const homeRoutes = require("./features/home/routes");
 const authRoutes = require("./features/auth/routes");
 const messageRoutes = require("./features/messages/routes");
 const userRoutes = require("./features/users/routes");
@@ -41,11 +42,7 @@ app.use((req, res, next) => {
 });
 
 // Routes
-app.get("/", (req, res) => {
-  const user = req.user;
-  res.render("home", { user });
-});
-
+app.get("/", homeRoutes);
 app.use("/auth", authRoutes);
 app.use("/messages", messageRoutes);
 app.use("/users", userRoutes);
