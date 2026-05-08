@@ -5,12 +5,22 @@
 <p><strong>First Name:</strong> <%= user.first_name %></p>
 <p><strong>Last Name:</strong> <%= user.last_name %></p>
 <p><strong>Member:</strong> <%= user.is_member ? 'Yes' : 'No' %></p>
+<p><strong>Admin:</strong> <%= user.is_admin ? 'Yes' : 'No' %></p>
 <p><strong>Created At:</strong> <%= user.created_at.toLocaleString() %></p>
 
 <% if (!locals.user.is_member) {%>
 <form action="/users/me/membership" method="POST">
-  <label for="secretPasscode">Secret Passcode</label>
-  <input id="secretPasscode" name="secretPasscode" type="text" />
+  <label for="clubPasscode">Club passcode</label>
+  <input id="clubPasscode" name="clubPasscode" type="text" />
   <button type="submit">Join the club</button>
 </form>
-<% } %> <%- include("../partials/errors.ejs") %>
+<% } %>
+
+<% if (!locals.user.is_admin) {%>
+<form action="/users/me/admin" method="POST">
+  <label for="adminPasscode">Admin passcode</label>
+  <input id="adminPasscode" name="adminPasscode" type="text" />
+  <button type="submit">Grant admin access</button>
+</form>
+<% } %>
+<%- include("../partials/errors.ejs") %>

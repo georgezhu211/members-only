@@ -1,9 +1,18 @@
 const { body } = require("express-validator");
 
-const validator = [
-  body("secretPasscode")
-    .equals(process.env.SECRET_PASSCODE)
+const validateClubCode = [
+  body("clubPasscode")
+    .equals(process.env.CLUB_PASSCODE)
     .withMessage("Wrong passcode!"),
 ];
 
-module.exports = validator;
+const validateAdminCode = [
+  body("adminPasscode")
+    .equals(process.env.ADMIN_PASSCODE)
+    .withMessage("Wrong passcode!"),
+];
+
+module.exports = {
+  validateClubCode,
+  validateAdminCode,
+};
