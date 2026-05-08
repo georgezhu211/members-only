@@ -1,8 +1,16 @@
 const db = require("../../config/db");
 
 exports.findAll = async () => {
-  const { rows } = await db.query("SELECT * FROM messages",);
+  const { rows } = await db.query("SELECT * FROM messages");
   return rows;
+};
+
+exports.findById = async (id) => {
+  const { rows } = await db.query(
+    "SELECT * FROM messages WHERE messages.id = $1",
+    [id]
+  );
+  return rows[0];
 };
 
 exports.create = async ({ userId, title, content }) => {
