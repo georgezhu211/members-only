@@ -3,8 +3,8 @@
 const { Client } = require("pg");
 
 const SQL = `
-DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS messages;
+DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS session;
 
 CREATE TABLE users (
@@ -40,7 +40,7 @@ CREATE TABLE "session" (
   "sid" varchar NOT NULL COLLATE "default",
   "sess" json NOT NULL,
   "expire" timestamp(6) NOT NULL
-)
+);
 
 ALTER TABLE "session" ADD CONSTRAINT "session_pkey" PRIMARY KEY ("sid") NOT DEFERRABLE INITIALLY IMMEDIATE;
 
