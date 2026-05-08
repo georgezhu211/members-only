@@ -42,7 +42,7 @@ app.use((req, res, next) => {
 });
 
 // Routes
-app.get("/", homeRoutes);
+app.use("/", homeRoutes);
 app.use("/auth", authRoutes);
 app.use("/messages", messageRoutes);
 app.use("/users", userRoutes);
