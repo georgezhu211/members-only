@@ -17,10 +17,7 @@ exports.postSignup = async (req, res) => {
   const data = matchedData(req);
   const user = await authService.createUser(data);
 
-  res.status(201).json({
-    message: "User created",
-    user,
-  });
+  res.redirect("/");
 };
 
 exports.getLogin = (req, res) => {
