@@ -16,3 +16,9 @@ exports.findByUsername = async (username) => {
 
   return rows[0];
 };
+
+exports.findById = async (id) => {
+  const { rows } = await db.query("SELECT * FROM users WHERE id = $1", [id]);
+
+  return rows[0];
+};

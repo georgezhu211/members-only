@@ -32,10 +32,7 @@ function configurePassport(passport) {
 
   passport.deserializeUser(async (id, done) => {
     try {
-      const {
-        rows: [user],
-      } = await db.query("SELECT * FROM users WHERE id = $1", [id]);
-
+      const user = await userRepository.findById(id);
       done(null, user);
     } catch (err) {
       done(err);
