@@ -27,3 +27,11 @@ exports.update = async (id, { title, content }) => {
     id,
   ]);
 };
+
+exports.delete = async (id) => {
+  const { rows } = await db.query(
+    "DELETE FROM messages WHERE id = $1 RETURNING *",
+    [id]
+  );
+  return rows[0];
+};

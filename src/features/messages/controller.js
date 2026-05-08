@@ -47,3 +47,14 @@ exports.update = async (req, res) => {
   await messageRepository.update(req.params.id, { title, content });
   res.redirect("/messages");
 };
+
+exports.delete = async (req, res) => {
+  const message = await messageRepository.findById(req.params.id);
+
+  if (!message) {
+    throw new NotFoundError("Message not found");
+  }
+
+  await messageRepository.delete(req.params.id);
+  res.redirect("/messages");
+};
