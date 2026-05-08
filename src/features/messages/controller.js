@@ -47,8 +47,9 @@ exports.update = async (req, res) => {
   const result = validationResult(req);
 
   if (!result.isEmpty()) {
-    return res.status(400).render("messages/new", {
+    return res.status(400).render("messages/edit", {
       errors: result.array(),
+      message,
     });
   }
 
