@@ -1,7 +1,7 @@
 const db = require("../../config/db");
 
 exports.findAll = async () => {
-  const { rows } = await db.query("SELECT * FROM messages");
+  const { rows } = await db.query("SELECT * FROM messages ORDER BY id ASC");
   return rows;
 };
 
