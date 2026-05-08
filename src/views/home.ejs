@@ -4,7 +4,7 @@
 <div>
   <h3><%= message.title %></h3>
   <p><%= message.content %></p>
-  <% if (locals.user.is_member) {%>
+  <% if (locals.user?.is_member) {%>
   <p>
     by <%= message.username %>
     <small><%= message.created_at.toLocaleString() %></small>
