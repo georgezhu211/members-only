@@ -1,6 +1,6 @@
 <div>
   <h3><%= message.title %></h3>
   <p><%= message.content %></p>
-  <small><%= message.created_at %></small>
+  <small><%= message.created_at.toLocaleString() %></small>
 </div>
 <a href="/messages">← Return</a>

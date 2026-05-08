@@ -4,7 +4,7 @@
 <div>
   <h3><%= message.title %></h3>
   <p><%= message.content %></p>
-  <small><%= message.created_at %></small>
+  <small><%= message.created_at.toLocaleString() %></small>
   <a href="/messages/<%= message.id %>">View</a>
   <a href="/messages/<%= message.id %>/edit">Edit</a>
   <form
