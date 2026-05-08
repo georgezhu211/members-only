@@ -1,7 +1,9 @@
 const { body } = require("express-validator");
 
 const validator = [
-  body("secretPasscode").equals("kamehameha").withMessage("Wrong passcode!"),
+  body("secretPasscode")
+    .equals(process.env.SECRET_PASSCODE)
+    .withMessage("Wrong passcode!"),
 ];
 
 module.exports = validator;
