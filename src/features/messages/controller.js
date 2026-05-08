@@ -13,7 +13,7 @@ exports.new = async (req, res) => {
 exports.create = async (req, res) => {
   const { title, content } = req.body;
   await messageRepository.create({ userId: req.user.id, title, content });
-  res.redirect("/");
+  res.redirect("/messages");
 };
 
 exports.show = async (req, res) => {
@@ -34,4 +34,16 @@ exports.edit = async (req, res) => {
   }
 
   res.render("messages/edit", { message });
+};
+
+exports.update = async (req, res) => {
+  const message = await messageRepository.findById(req.params.id);
+
+  if (!message) {
+    throw new NotFoundError("Message not found");
+  }
+
+  const { title, content } = req.body;
+  await messageRepository.update(req.params.id, { title, content });
+  res.redirect("/messages");
 };

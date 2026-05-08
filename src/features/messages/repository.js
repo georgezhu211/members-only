@@ -19,3 +19,11 @@ exports.create = async ({ userId, title, content }) => {
     [userId, title, content]
   );
 };
+
+exports.update = async (id, { title, content }) => {
+  await db.query("UPDATE messages SET title = $1, content = $2 WHERE id = $3", [
+    title,
+    content,
+    id,
+  ]);
+};
