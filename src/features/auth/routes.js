@@ -1,6 +1,5 @@
 const { Router } = require("express");
 const controller = require("./controller");
-const passport = require("passport");
 const validateUser = require("./validator");
 
 const router = Router();
@@ -11,13 +10,7 @@ router.post("/signup", validateUser, controller.postSignup);
 
 router.get("/login", controller.getLogin);
 
-router.post(
-  "/login",
-  passport.authenticate("local", {
-    successRedirect: "/",
-    failureRedirect: "/",
-  })
-);
+router.post("/login", controller.postLogin);
 
 router.get("/logout", controller.getLogout);
 
