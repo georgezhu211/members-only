@@ -1,7 +1,9 @@
 const db = require("../../config/db");
 
 exports.findAll = async () => {
-  const { rows } = await db.query("SELECT * FROM messages ORDER BY id ASC");
+  const { rows } = await db.query(
+    "SELECT messages.*, users.username AS username FROM messages JOIN users ON users.id = messages.user_id ORDER BY messages.id DESC"
+  );
   return rows;
 };
 
