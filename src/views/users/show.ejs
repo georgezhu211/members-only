@@ -1,0 +1,8 @@
+<h1>Profile</h1>
+
+<p><strong>ID:</strong> <%= user.id %></p>
+<p><strong>Username:</strong> <%= user.username %></p>
+<p><strong>First Name:</strong> <%= user.first_name %></p>
+<p><strong>Last Name:</strong> <%= user.last_name %></p>
+<p><strong>Member:</strong> <%= user.is_member ? 'Yes' : 'No' %></p>
+<p><strong>Created At:</strong> <%= user.created_at.toLocaleString() %></p>
