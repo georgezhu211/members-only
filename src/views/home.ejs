@@ -6,7 +6,7 @@
   <p><%= message.content %></p>
   <% if (locals.user?.is_member || locals.user?.is_admin) {%>
   <p>
-    by <%= message.username %>
+    @<%= message.username %>
     <small><%= message.created_at.toLocaleString() %></small>
   </p>
   <% } %>
