@@ -21,6 +21,7 @@ app.set("view engine", "ejs");
 // Middlewares
 app.use(layouts);
 app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, "public")));
 
 // Session
 app.use(
