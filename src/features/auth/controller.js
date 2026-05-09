@@ -18,7 +18,10 @@ exports.postSignup = async (req, res) => {
   const data = matchedData(req);
   const user = await authService.createUser(data);
 
-  res.redirect("/");
+  req.login(user, (err) => {
+    if (err) return next(err);
+    return res.redirect("/");
+  });
 };
 
 exports.getLogin = (req, res) => {
@@ -44,9 +47,7 @@ exports.postLogin = (req, res, next) => {
 
 exports.getLogout = (req, res, next) => {
   req.logout((err) => {
-    if (err) {
-      return next(err);
-    }
-    res.redirect("/");
+    if (err) return next(err);
+    return res.redirect("/");
   });
 };
