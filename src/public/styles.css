@@ -1,0 +1,317 @@
+@import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap");
+
+/* ── Reset & Base ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #0a0a0a;
+  --green: #33ff33;
+  --green-dim: #1a8c1a;
+  --green-glow: rgba(51, 255, 51, 0.12);
+  --text: #ccffcc;
+  --text-muted: #4d994d;
+  --red: #ff3333;
+  --border: #1a4d1a;
+  --radius: 2px;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: "Share Tech Mono", "Courier New", monospace;
+  font-size: 1rem;
+  line-height: 1.7;
+  min-height: 100vh;
+  /* subtle scanline effect */
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.08) 2px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+}
+
+/* ── Typography ── */
+h1,
+h2,
+h3,
+h4 {
+  color: var(--green);
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+}
+
+h1::before {
+  content: "> ";
+  color: var(--green-dim);
+}
+
+h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.4rem;
+}
+
+h3::before {
+  content: "# ";
+  color: var(--green-dim);
+}
+
+a {
+  color: var(--green);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition:
+    color 0.15s,
+    text-shadow 0.15s;
+}
+
+a:hover {
+  color: #fff;
+  text-shadow: 0 0 8px var(--green);
+}
+
+small {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+p {
+  margin-bottom: 0.6rem;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 1.25rem 0;
+}
+
+/* ── Layout ── */
+body > nav {
+  background: var(--bg);
+  border-bottom: 1px solid var(--green-dim);
+  padding: 0.65rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+body > nav::before {
+  content: "[MEMBERS-ONLY v1.0]";
+  color: var(--green-dim);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+body > nav a {
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0.5rem;
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+body > nav a:hover {
+  color: var(--green);
+  text-shadow: 0 0 6px var(--green);
+}
+
+main {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+/* ── Forms ── */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 480px;
+}
+
+fieldset {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+legend {
+  color: var(--green-dim);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0 0.5rem;
+}
+
+label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: -0.4rem;
+}
+
+label::before {
+  content: "$ ";
+}
+
+input[type="text"],
+input[type="password"],
+textarea {
+  background: #050505;
+  border: 1px solid var(--green-dim);
+  border-radius: var(--radius);
+  color: var(--green);
+  font-family: "Share Tech Mono", "Courier New", monospace;
+  font-size: 1rem;
+  padding: 0.5rem 0.75rem;
+  width: 100%;
+  caret-color: var(--green);
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+  resize: vertical;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--green);
+  box-shadow:
+    0 0 0 3px var(--green-glow),
+    0 0 12px var(--green-glow);
+}
+
+/* ── Buttons ── */
+button[type="submit"] {
+  align-self: flex-start;
+  background: transparent;
+  border: 1px solid var(--green-dim);
+  border-radius: var(--radius);
+  color: var(--green);
+  cursor: pointer;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.5rem 1.25rem;
+  transition:
+    background 0.2s,
+    box-shadow 0.2s,
+    border-color 0.2s;
+}
+
+button[type="submit"]::before {
+  content: "> ";
+}
+
+button[type="submit"]:hover {
+  background: var(--green-glow);
+  border-color: var(--green);
+  box-shadow: 0 0 10px var(--green-glow);
+}
+
+/* Destructive */
+form[action*="delete"] button[type="submit"] {
+  border-color: #7a1a1a;
+  color: var(--red);
+}
+
+form[action*="delete"] button[type="submit"]:hover {
+  background: rgba(255, 51, 51, 0.1);
+  box-shadow: 0 0 10px rgba(255, 51, 51, 0.15);
+}
+
+/* ── Message Cards ── */
+main > div {
+  background: #050505;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+main > div:hover {
+  border-color: var(--green-dim);
+  box-shadow: 0 0 12px var(--green-glow);
+}
+
+/* ── Errors ── */
+ul {
+  list-style: none;
+  margin-bottom: 1rem;
+}
+
+ul li {
+  color: var(--red);
+  font-size: 0.9rem;
+  padding: 0.15rem 0;
+}
+
+ul li::before {
+  content: "[ERR] ";
+  color: #7a1a1a;
+}
+
+/* ── Profile page ── */
+main > p {
+  border-bottom: 1px solid var(--border);
+  padding: 0.45rem 0;
+}
+
+main > p strong {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-right: 0.5rem;
+}
+
+main > p strong::before {
+  content: ":: ";
+}
+
+/* ── Blinking cursor on h1 ── */
+h1::after {
+  content: "_";
+  color: var(--green);
+  animation: blink 1.1s step-start infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
