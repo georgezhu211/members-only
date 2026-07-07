@@ -1,22 +1,19 @@
-<h1>Edit Message</h1>
+<h1>Amend the Record</h1>
 <%- include("../partials/errors.ejs") %>
 <form action="/messages/<%= message.id %>/update" method="POST">
   <div>
-    <label for="title"><strong>Title:</strong></label>
-    <br />
+    <label for="title">Subject</label>
     <input type="text" name="title" id="title" value="<%= message.title %>" />
   </div>
 
-  <br />
   <div>
-    <label for="content"> <strong>Message:</strong></label>
-    <br />
-    <textarea name="content" id="content" rows="5" cols="40">
+    <label for="content">Your Words</label>
+    <textarea name="content" id="content" rows="5">
 <%= message.content %></textarea
     >
   </div>
 
-  <button type="submit">Submit</button>
+  <button type="submit">Seal Changes</button>
 </form>
 
-<a href="/messages">← Return</a>
+<a href="/messages">← Return to archives</a>

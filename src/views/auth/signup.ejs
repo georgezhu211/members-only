@@ -1,28 +1,48 @@
-<h1>Sign Up</h1>
+<h1>Pledge Your Allegiance</h1>
 <%- include("../partials/errors.ejs") %>
 <form action="/auth/signup" method="POST">
   <fieldset>
-    <legend>Personal Info</legend>
+    <legend>Your True Identity</legend>
 
     <label for="firstName">First name</label>
-    <input id="firstName" name="firstName" type="text" />
+    <input
+      id="firstName"
+      name="firstName"
+      type="text"
+      placeholder="Given name"
+    />
 
     <label for="lastName">Last name</label>
-    <input id="lastName" name="lastName" type="text" />
+    <input id="lastName" name="lastName" type="text" placeholder="Surname" />
   </fieldset>
 
   <fieldset>
-    <legend>Account Info</legend>
+    <legend>Society Credentials</legend>
 
-    <label for="username">Username</label>
-    <input id="username" name="username" type="text" />
+    <label for="username">Choose an alias</label>
+    <input
+      id="username"
+      name="username"
+      type="text"
+      placeholder="How shall we know you?"
+    />
 
-    <label for="password">Password</label>
-    <input id="password" name="password" type="password" />
+    <label for="password">Secret passphrase</label>
+    <input
+      id="password"
+      name="password"
+      type="password"
+      placeholder="••••••••"
+    />
 
-    <label for="confirmPassword">Confirm password</label>
-    <input id="confirmPassword" name="confirmPassword" type="password" />
+    <label for="confirmPassword">Confirm passphrase</label>
+    <input
+      id="confirmPassword"
+      name="confirmPassword"
+      type="password"
+      placeholder="••••••••"
+    />
   </fieldset>
 
-  <button type="submit">Sign Up</button>
+  <button type="submit">Take the Oath</button>
 </form>

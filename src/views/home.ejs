@@ -1,5 +1,5 @@
-<h1>Welcome</h1>
-<p>Recent messages from the community. <% if (locals.user) { %><a href="/messages">Go to your messages</a><% } else { %><a href="/auth/login">Log in</a> to post.<% } %></p>
+<h1>The Inner Circle</h1>
+<p>Whispers from the society. <% if (locals.user) { %><a href="/messages">Enter the archives</a><% } else { %><a href="/auth/login">Prove your identity</a> to speak.<% } %></p>
 <% for (const message of messages) { %>
 <hr />
 <div>
@@ -7,23 +7,22 @@
   <p><%= message.content %></p>
   <% if (locals.user?.is_member || locals.user?.is_admin) {%>
   <p>
-    @<%= message.username %>
-    <small><%= message.created_at.toLocaleString() %></small>
+    <small>⚶ @<%= message.username %> · <%= message.created_at.toLocaleString() %></small>
   </p>
   <% } %>
   <% if (locals.user?.is_admin) {%>
   <form
-  action="/messages/<%= message.id %>/delete"
-  method="POST"
-  style="display: inline"
+    action="/messages/<%= message.id %>/delete"
+    method="POST"
+    style="display: inline"
   >
-  <button
-    type="submit"
-    onclick="return confirm('Are you sure you want to delete this message?');"
-  >
-    Delete
-  </button>
-</form>
+    <button
+      type="submit"
+      onclick="return confirm('Banish this message to the void?');"
+    >
+      Destroy
+    </button>
+  </form>
   <% } %>
 </div>
 <% } %>

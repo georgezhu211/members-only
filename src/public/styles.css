@@ -1,317 +1,447 @@
-@import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap");
+/* ═══════════════════════════════════════════════════════
+   DARK SECRET SOCIETY THEME
+   "Those who know, know."
+   ═══════════════════════════════════════════════════════ */
 
-/* ── Reset & Base ── */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap");
 
 :root {
-  --bg: #0a0a0a;
-  --green: #33ff33;
-  --green-dim: #1a8c1a;
-  --green-glow: rgba(51, 255, 51, 0.12);
-  --text: #ccffcc;
-  --text-muted: #4d994d;
-  --red: #ff3333;
-  --border: #1a4d1a;
-  --radius: 2px;
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #12121a;
+  --bg-card: #1a1a2e;
+  --bg-card-hover: #1f1f35;
+  --bg-input: #0f0f1a;
+  --border-color: #2a1a3e;
+  --border-glow: #6b2fa0;
+  --text-primary: #e0d6c8;
+  --text-secondary: #8a7f9e;
+  --text-muted: #5a5070;
+  --accent-primary: #9b2335;
+  --accent-secondary: #6b2fa0;
+  --accent-gold: #c9a84c;
+  --accent-crimson: #8b0000;
+  --shadow-color: rgba(107, 47, 160, 0.15);
+  --shadow-strong: rgba(155, 35, 53, 0.2);
+  --glow: 0 0 15px rgba(107, 47, 160, 0.3);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html {
-  font-size: 16px;
+  scroll-behavior: smooth;
 }
 
 body {
-  background-color: var(--bg);
-  color: var(--text);
-  font-family: "Share Tech Mono", "Courier New", monospace;
-  font-size: 1rem;
+  font-family: "Crimson Text", Georgia, serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
   line-height: 1.7;
+  font-size: 1.1rem;
   min-height: 100vh;
-  /* subtle scanline effect */
-  background-image: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(0, 0, 0, 0.08) 2px,
-    rgba(0, 0, 0, 0.08) 4px
-  );
+  background-image:
+    radial-gradient(
+      ellipse at top,
+      rgba(107, 47, 160, 0.05) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at bottom,
+      rgba(139, 0, 0, 0.03) 0%,
+      transparent 50%
+    );
 }
 
-/* ── Typography ── */
-h1,
-h2,
-h3,
-h4 {
-  color: var(--green);
-  letter-spacing: 0.05em;
-  line-height: 1.2;
-  text-transform: uppercase;
+/* ─── Navigation ─────────────────────────────────────── */
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 2rem;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
 }
+
+nav div {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+nav a {
+  font-family: "Cinzel", serif;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+nav a:hover {
+  color: var(--accent-gold);
+  border-bottom-color: var(--accent-gold);
+  text-shadow: 0 0 8px rgba(201, 168, 76, 0.4);
+}
+
+nav span {
+  font-family: "Cinzel", serif;
+  color: var(--accent-gold);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  opacity: 0.8;
+}
+
+/* ─── Main Content ───────────────────────────────────── */
+
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+/* ─── Typography ─────────────────────────────────────── */
 
 h1 {
-  font-size: 1.6rem;
-  margin-bottom: 1.5rem;
+  font-family: "Cinzel", serif;
+  font-weight: 900;
+  font-size: 2.5rem;
+  color: var(--text-primary);
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 10px rgba(107, 47, 160, 0.2);
+  position: relative;
 }
 
-h1::before {
-  content: "> ";
-  color: var(--green-dim);
+h1::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    var(--accent-crimson),
+    var(--accent-secondary)
+  );
+  margin-top: 0.5rem;
+  border-radius: 1px;
+  box-shadow: var(--glow);
 }
 
 h3 {
-  font-size: 1.1rem;
-  margin-bottom: 0.4rem;
+  font-family: "Cinzel", serif;
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: var(--text-primary);
+  letter-spacing: 0.03em;
 }
 
-h3::before {
-  content: "# ";
-  color: var(--green-dim);
-}
-
-a {
-  color: var(--green);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  transition:
-    color 0.15s,
-    text-shadow 0.15s;
-}
-
-a:hover {
-  color: #fff;
-  text-shadow: 0 0 8px var(--green);
+p {
+  margin-bottom: 0.8rem;
+  color: var(--text-primary);
 }
 
 small {
   color: var(--text-muted);
-  font-size: 0.82rem;
+  font-size: 0.85rem;
+  font-style: italic;
 }
 
-p {
-  margin-bottom: 0.6rem;
+strong {
+  color: var(--accent-gold);
+  font-weight: 600;
 }
+
+a {
+  color: var(--accent-secondary);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid transparent;
+}
+
+a:hover {
+  color: var(--accent-gold);
+  border-bottom-color: var(--accent-gold);
+  text-shadow: 0 0 6px rgba(201, 168, 76, 0.3);
+}
+
+/* ─── Cards / Message Blocks ─────────────────────────── */
 
 hr {
   border: none;
-  border-top: 1px solid var(--border);
-  margin: 1.25rem 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--border-color),
+    var(--accent-secondary),
+    var(--border-color),
+    transparent
+  );
+  margin: 2rem 0;
 }
 
-/* ── Layout ── */
-body > nav {
-  background: var(--bg);
-  border-bottom: 1px solid var(--green-dim);
-  padding: 0.65rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: sticky;
-  top: 0;
-  z-index: 100;
+hr + div,
+main > div {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 1.5rem 2rem;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-body > nav::before {
-  content: "[MEMBERS-ONLY v1.0]";
-  color: var(--green-dim);
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
+hr + div::before,
+main > div::before {
+  content: "";
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  pointer-events: none;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    var(--accent-crimson),
+    var(--accent-secondary)
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-body > nav a {
-  font-size: 0.85rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin: 0 0.5rem;
-  color: var(--text-muted);
-  text-decoration: none;
+hr + div:hover,
+main > div:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-glow);
+  box-shadow: var(--glow);
 }
 
-body > nav a:hover {
-  color: var(--green);
-  text-shadow: 0 0 6px var(--green);
+hr + div:hover::before,
+main > div:hover::before {
+  opacity: 1;
 }
 
-main {
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 2rem 1.5rem;
-}
+/* ─── Forms ──────────────────────────────────────────── */
 
-/* ── Forms ── */
 form {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  max-width: 480px;
+  margin-top: 1.5rem;
 }
 
 fieldset {
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1rem 1.25rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  background: var(--bg-secondary);
 }
 
 legend {
-  color: var(--green-dim);
-  font-size: 0.8rem;
+  font-family: "Cinzel", serif;
+  color: var(--accent-gold);
+  font-size: 0.9rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  padding: 0 0.5rem;
+  padding: 0 0.75rem;
 }
 
 label {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  letter-spacing: 0.06em;
+  display: block;
+  font-family: "Cinzel", serif;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  margin-bottom: -0.4rem;
-}
-
-label::before {
-  content: "$ ";
+  margin-bottom: 0.4rem;
+  margin-top: 1rem;
 }
 
 input[type="text"],
 input[type="password"],
 textarea {
-  background: #050505;
-  border: 1px solid var(--green-dim);
-  border-radius: var(--radius);
-  color: var(--green);
-  font-family: "Share Tech Mono", "Courier New", monospace;
-  font-size: 1rem;
-  padding: 0.5rem 0.75rem;
   width: 100%;
-  caret-color: var(--green);
-  transition:
-    border-color 0.2s,
-    box-shadow 0.2s;
-  resize: vertical;
+  padding: 0.75rem 1rem;
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: 3px;
+  color: var(--text-primary);
+  font-family: "Crimson Text", serif;
+  font-size: 1rem;
+  transition: all 0.3s ease;
 }
 
 input[type="text"]:focus,
 input[type="password"]:focus,
 textarea:focus {
   outline: none;
-  border-color: var(--green);
+  border-color: var(--accent-secondary);
   box-shadow:
-    0 0 0 3px var(--green-glow),
-    0 0 12px var(--green-glow);
+    0 0 10px rgba(107, 47, 160, 0.2),
+    inset 0 0 5px rgba(107, 47, 160, 0.05);
 }
 
-/* ── Buttons ── */
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* ─── Buttons ────────────────────────────────────────── */
+
 button[type="submit"] {
-  align-self: flex-start;
-  background: transparent;
-  border: 1px solid var(--green-dim);
-  border-radius: var(--radius);
-  color: var(--green);
-  cursor: pointer;
-  font-family: "Share Tech Mono", monospace;
+  font-family: "Cinzel", serif;
   font-size: 0.85rem;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  padding: 0.5rem 1.25rem;
-  transition:
-    background 0.2s,
-    box-shadow 0.2s,
-    border-color 0.2s;
+  padding: 0.75rem 2rem;
+  background: linear-gradient(
+    135deg,
+    var(--accent-crimson),
+    var(--accent-primary)
+  );
+  color: var(--text-primary);
+  border: 1px solid var(--accent-primary);
+  border-radius: 3px;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 button[type="submit"]::before {
-  content: "> ";
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(201, 168, 76, 0.1),
+    transparent
+  );
+  transition: left 0.5s ease;
 }
 
 button[type="submit"]:hover {
-  background: var(--green-glow);
-  border-color: var(--green);
-  box-shadow: 0 0 10px var(--green-glow);
+  background: linear-gradient(135deg, var(--accent-primary), #b02a3f);
+  box-shadow:
+    0 0 20px var(--shadow-strong),
+    0 4px 15px rgba(0, 0, 0, 0.3);
+  transform: translateY(-1px);
 }
 
-/* Destructive */
-form[action*="delete"] button[type="submit"] {
-  border-color: #7a1a1a;
-  color: var(--red);
+button[type="submit"]:hover::before {
+  left: 100%;
 }
 
-form[action*="delete"] button[type="submit"]:hover {
-  background: rgba(255, 51, 51, 0.1);
-  box-shadow: 0 0 10px rgba(255, 51, 51, 0.15);
+button[type="submit"]:active {
+  transform: translateY(0);
 }
 
-/* ── Message Cards ── */
-main > div {
-  background: #050505;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1rem 1.25rem;
-  margin-bottom: 1rem;
-  transition:
-    border-color 0.2s,
-    box-shadow 0.2s;
+/* Delete button (inline forms) */
+form[style*="inline"] button,
+form[action*="delete"] button {
+  background: transparent;
+  border: 1px solid var(--accent-crimson);
+  color: var(--accent-primary);
+  padding: 0.4rem 1rem;
+  font-size: 0.75rem;
+  margin-top: 0;
 }
 
-main > div:hover {
-  border-color: var(--green-dim);
-  box-shadow: 0 0 12px var(--green-glow);
+form[style*="inline"] button:hover,
+form[action*="delete"] button:hover {
+  background: var(--accent-crimson);
+  color: var(--text-primary);
+  box-shadow: 0 0 12px rgba(139, 0, 0, 0.4);
 }
 
-/* ── Errors ── */
+/* ─── Error Messages ─────────────────────────────────── */
+
 ul {
   list-style: none;
-  margin-bottom: 1rem;
+  padding: 1rem 1.5rem;
+  background: rgba(139, 0, 0, 0.1);
+  border: 1px solid var(--accent-crimson);
+  border-left: 3px solid var(--accent-primary);
+  border-radius: 3px;
+  margin-bottom: 1.5rem;
 }
 
 ul li {
-  color: var(--red);
-  font-size: 0.9rem;
-  padding: 0.15rem 0;
+  color: #e06070;
+  padding: 0.3rem 0;
+  font-size: 0.95rem;
 }
 
 ul li::before {
-  content: "[ERR] ";
-  color: #7a1a1a;
+  content: "⚠ ";
+  opacity: 0.7;
 }
 
-/* ── Profile page ── */
+/* ─── Profile Page ───────────────────────────────────── */
+
 main > p {
-  border-bottom: 1px solid var(--border);
-  padding: 0.45rem 0;
+  padding: 0.3rem 0;
+  border-bottom: 1px solid rgba(42, 26, 62, 0.3);
 }
 
-main > p strong {
-  color: var(--text-muted);
-  font-size: 0.8rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  margin-right: 0.5rem;
+/* ─── Utility ────────────────────────────────────────── */
+
+::selection {
+  background: rgba(107, 47, 160, 0.3);
+  color: var(--text-primary);
 }
 
-main > p strong::before {
-  content: ":: ";
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-/* ── Blinking cursor on h1 ── */
-h1::after {
-  content: "_";
-  color: var(--green);
-  animation: blink 1.1s step-start infinite;
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
 }
 
-@keyframes blink {
-  50% {
-    opacity: 0;
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-secondary);
+}
+
+/* ─── Responsive ─────────────────────────────────────── */
+
+@media (max-width: 600px) {
+  nav {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  main {
+    padding: 2rem 1rem;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  hr + div,
+  main > div {
+    padding: 1rem 1.2rem;
   }
 }

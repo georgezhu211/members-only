@@ -1,20 +1,27 @@
-<h1>Create Message</h1>
+<h1>Inscribe a Message</h1>
 <%- include("../partials/errors.ejs") %>
 <form action="/messages" method="POST">
   <div>
-    <label for="title"><strong>Title:</strong></label>
-    <br />
-    <input type="text" name="title" id="title" />
+    <label for="title">Subject</label>
+    <input
+      type="text"
+      name="title"
+      id="title"
+      placeholder="Title your decree..."
+    />
   </div>
 
-  <br />
   <div>
-    <label for="content"> <strong>Message:</strong></label>
-    <br />
-    <textarea name="content" id="content" rows="5" cols="40"></textarea>
+    <label for="content">Your Words</label>
+    <textarea
+      name="content"
+      id="content"
+      rows="5"
+      placeholder="Speak freely among brethren..."
+    ></textarea>
   </div>
 
-  <button type="submit">Submit</button>
+  <button type="submit">Seal & Send</button>
 </form>
 
-<a href="/">← Return</a>
+<a href="/">← Return to the sanctum</a>

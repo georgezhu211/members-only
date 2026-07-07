@@ -1,11 +1,11 @@
-<h1>Log In</h1>
+<h1>Enter the Sanctum</h1>
 <% if (locals.error) { %>
-  <p><%= error %> </p>
+  <p style="color: #e06070;"><%= error %></p>
 <% } %>
 <form action="/auth/login" method="POST">
-  <label for="username">Username</label>
-  <input id="username" name="username" type="text" />
-  <label for="password">Password</label>
-  <input id="password" name="password" type="password" />
-  <button type="submit">Log In</button>
+  <label for="username">Your Alias</label>
+  <input id="username" name="username" type="text" placeholder="Who seeks entry?" />
+  <label for="password">Passphrase</label>
+  <input id="password" name="password" type="password" placeholder="••••••••" />
+  <button type="submit">Enter</button>
 </form>
